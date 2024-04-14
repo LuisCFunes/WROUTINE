@@ -1,34 +1,29 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import './index.css'
+import 'tailwindcss/tailwind.css';
+import InputTimeTotal from "./components/ui/inputTimeTotal"
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <div className="flex flex-col h-screen">
+      <header className="py-4">
+        <div className="container flex items-center px-4 md:px-6">
+          <h3 className="flex items-center space-x-2 text-lg font-medium">
+            <span>WROUTINE</span>
+          </h3>
+        </div>
+      </header>
+      <main className="flex-1 flex items-center justify-center">
+        <div className="grid items-center gap-4 px-4 md:px-6">
+          <div className="flex flex-col items-center space-y-2 text-center">
+            <h1 className="text-4xl font-bold tracking-tighter sm:text-6xl">Ready to start your routine?</h1>
+            <p className="max-w-[600px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
+              Your timer will start once you press the button. Get ready to focus!
+            </p>
+          </div>
+         <InputTimeTotal/>
+        </div>
+      </main>
+    </div>
   )
 }
 

@@ -1,6 +1,7 @@
 import './index.css'
 import 'tailwindcss/tailwind.css';
-import InputTimeTotal from "./components/ui/inputTimeTotal"
+import InputTimeTotal from "./components/ui/InputTimeTotal"
+
 
 function App() {
   return (

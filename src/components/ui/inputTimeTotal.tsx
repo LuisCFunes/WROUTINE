@@ -67,6 +67,25 @@ const InputTimeTotal: React.FC = () => {
         return () => clearInterval(timer);
     }, [isRunning, time]);
 
+    const originalExerciseTime = timeRoutine.exerciseTime;
+    useEffect(() => {
+        let timerSet: NodeJS.Timeout;
+        if (isRunning) {
+            timerSet = setInterval(() => {
+                setTimeRoutine((prevTime) => {// Almacenar el valor original
+                    return {
+                        ...prevTime,
+                        exerciseTime:
+                            prevTime.exerciseTime === 0
+                                ? originalExerciseTime
+                                : prevTime.exerciseTime - 1,
+                    };
+                });
+            }, 1000);
+        }
+        return () => clearInterval(timerSet);
+    }, [isRunning]);
+    
     return (
         <div className="flex justify-center gap-4">
             <div className="flex flex-col gap-2 my-auto">

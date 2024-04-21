@@ -1,9 +1,13 @@
 import './index.css'
 import 'tailwindcss/tailwind.css';
-import InputTimeTotal from "./components/ui/InputTimeTotal"
+import ExerciseTimer from './components/ui/ExerciseTimer';
 
 
 function App() {
+  const totalTime = 300;
+  const exerciseTime = 30;
+  const restTime = 10;
+
   return (
     <div className="flex flex-col h-screen">
       <header className="py-4">
@@ -21,7 +25,7 @@ function App() {
               Your timer will start once you press the button. Get ready to focus!
             </p>
           </div>
-         <InputTimeTotal/>
+          <ExerciseTimer initialTotalTime={totalTime} initialExerciseTime={exerciseTime} initialRestTime={restTime} />
         </div>
       </main>
     </div>

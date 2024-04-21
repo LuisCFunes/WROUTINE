@@ -2,11 +2,14 @@
 export default {
   darkMode: ["class"],
   content: [
-    './pages/**/*.{ts,tsx}',
-    './components/**/*.{ts,tsx}',
-    './app/**/*.{ts,tsx}',
-    './src/**/*.{ts,tsx}',
+    "./pages/**/*.{ts,tsx}",
+    "./components/**/*.{ts,tsx}",
+    "./app/**/*.{ts,tsx}",
+    "./src/**/*.{ts,tsx}",
   ],
+  options: {
+    safelist: ["focus-visible", "disabled"],
+  },
   prefix: "",
   theme: {
     container: {
@@ -73,5 +76,5 @@ export default {
       },
     },
   },
-  plugins: [("tailwindcss-animate")],
-}
+  plugins: ["tailwindcss-animate"],
+};

@@ -1,15 +1,19 @@
 import React from "react";
 
 interface DisplayTimeProps {
-    exerciseTime: number;
-    restTime: number;
+    times: {
+        totalTime: number;
+        exerciseTime: number;
+        restTime: number;
+    };
 }
 
-const DisplayTime: React.FC<DisplayTimeProps> = ({ exerciseTime, restTime }) => {
+const DisplayTime: React.FC<DisplayTimeProps> = ({ times }) => {
     return (
         <div>
-            <div>Exercise Time: {String(exerciseTime).padStart(2, "0")}</div>
-            <div>Rest Time: {String(restTime).padStart(2, "0")}</div>
+            <div>Total Time: {times.totalTime} min</div>
+            <div>Exercise Time: {times.exerciseTime} sec</div>
+            <div>Rest Time: {times.restTime} sec</div>
         </div>
     );
 };

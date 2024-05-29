@@ -1,7 +1,7 @@
 import './index.css'
 import 'tailwindcss/tailwind.css';
 import ExerciseTimer from './components/ui/ExerciseTimer';
-
+import RadioButtonTimer from './components/ui/RadiobuttonTimer';
 
 function App() {
   const totalTime = 300;
@@ -25,8 +25,11 @@ function App() {
               Your timer will start once you press the button. Get ready to focus!
             </p>
           </div>
-          <ExerciseTimer initialTotalTime={totalTime} initialExerciseTime={exerciseTime} initialRestTime={restTime} />
-        </div>
+          <div className="flex flex-col items-center space-y-4">
+            <RadioButtonTimer />
+          </div>
+{/*           <ExerciseTimer initialTotalTime={totalTime} initialExerciseTime={exerciseTime} initialRestTime={restTime} />
+ */}        </div>
       </main>
     </div>
   )

@@ -9,6 +9,12 @@ interface FormData {
     restTime: number;
 }
 
+interface TimeData {
+    totalTime: number;
+    exerciseTime: number;
+    restTime: number;
+}
+
 const RadioButtonTimer: React.FC = () => {
     const [formData, setFormData] = useState<FormData>({ totalTime: 0, exerciseTime: 0, restTime: 0 });
     const [timerStarted, setTimerStarted] = useState<boolean>(false);
@@ -17,31 +23,36 @@ const RadioButtonTimer: React.FC = () => {
         event.preventDefault();
         const formEntries = new FormData(event.target as HTMLFormElement);
         let newFormData: FormData = { totalTime: 0, exerciseTime: 0, restTime: 0 };
+        const timeMapping: Record<string, TimeData> = {
+            '10min': {
+                totalTime: 600, exerciseTime:
+                    30, restTime: 15
+            },
+            '20min': { totalTime: 1200, exerciseTime: 45, restTime: 25 },
+            '30min': { totalTime: 1800, exerciseTime: 60, restTime: 35 },
+        };
 
         for (const [key, value] of formEntries.entries()) {
-            if (key === 'total') {
-                if (value === '10min') newFormData.totalTime = 600;
-                else if (value === '20min') newFormData.totalTime = 1200;
-                else if (value === '30min') newFormData.totalTime = 1800;
-            } else if (key === 'exercise') {
-                if (value === '10min') {
-                    newFormData.exerciseTime = 30;
-                    newFormData.restTime = 15;
-                }
-                else if (value === '20min') {
-                    newFormData.exerciseTime = 45;
-                    newFormData.restTime = 25;
-                }
-                else if (value === '30min') {
-                    newFormData.exerciseTime = 60;
-                    newFormData.restTime = 35;
-                }
-            } else {
-                newFormData.totalTime = 0;
-                newFormData.exerciseTime = 0;
-                newFormData.restTime = 0;
+            switch (key) {
+                case 'total':
+                    newFormData.totalTime = timeMapping[value as keyof typeof timeMapping]?.totalTime || 0;
+
+                    break;
+                case 'exercise':
+                    const timeData = timeMapping[value as keyof typeof timeMapping];
+                    if (timeData) {
+                        newFormData.exerciseTime = timeData.exerciseTime;
+                        newFormData.restTime = timeData.restTime;
+                    }
+                    break;
+                default:
+                    newFormData.totalTime = 0;
+                    newFormData.exerciseTime = 0;
+                    newFormData.restTime = 0;
             }
         }
+
+
 
         if (newFormData.totalTime && newFormData.exerciseTime && newFormData.restTime) {
             setFormData(newFormData);
@@ -66,7 +77,7 @@ const RadioButtonTimer: React.FC = () => {
                             <input type="radio" name="total" value="30min" />
                             <label htmlFor="TotalTimeChoise3">30:00 min</label>
                         </div>
-                        <label className="flex justify-center font-bold" htmlFor="">Exercise Time for set:</label>
+                        <label className="flex justify-center font-bold" htmlFor="">Set Time:</label>
                         <div className="flex gap-2">
                             <input type="radio" name="exercise" value="10min" />
                             <label htmlFor="TimeExercise1">30 sec</label>

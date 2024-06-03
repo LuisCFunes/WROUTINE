@@ -13,7 +13,7 @@ const DisplayTime: React.FC<DisplayTimeProps> = ({ times }) => {
     return (
         <div>
             <div>Total Time:  {formatTime(times.totalTime)} min</div>
-            <div>Exercise Time: {times.exerciseTime} sec</div>
+            <div>Set Time: {times.exerciseTime} sec</div>
             <div>Rest Time: {times.restTime} sec</div>
         </div>
     );

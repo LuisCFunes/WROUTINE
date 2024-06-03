@@ -8,9 +8,9 @@ function App() {
     <div className="flex flex-col h-screen">
       <header className="py-4">
         <div className="container flex items-center px-4 md:px-6">
-          <h3 className="flex items-center space-x-2 text-lg font-medium">
+          <h1 className="m-auto space-x-2 text-2xl font-medium">
             <span>WROUTINE</span>
-          </h3>
+          </h1>
         </div>
       </header>
       <main className="flex-1 flex items-center justify-center">

@@ -1,3 +1,3 @@
-# Timer for make a Routine, with configuration for put the total time of the routine and put the time for each set
+# An application that allows me to set time intervals between exercises and breaks during a workout routine
 
 

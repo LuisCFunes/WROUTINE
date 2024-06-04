@@ -18,14 +18,23 @@ const ExerciseTimer: React.FC<ExerciseTimerProps> = ({ initialTotalTime, initial
   const [timeLeft, setTimeLeft] = useTimer(totalTime, isPaused, isTimerStarted);
   const isResting = useExerciseRestState(timeLeft, initialExerciseTime, initialRestTime);
 
+  const handleConfirmChanges = () => {
+    const totalSeconds = (Math.floor(totalTime / 60) * 60) + (totalTime % 60);
+    setTotalTime(totalSeconds);
+    setTimeLeft(totalSeconds);
+    setIsTimerStarted(true);
+  };
+
   const handlePauseResume = () => {
     setIsPaused(prevPaused => !prevPaused);
   };
 
   return (
     <div className='flex flex-col gap-2 w-[300px] m-auto'>
-      {isTimerStarted &&
-        <OnclickBtn onClick={handlePauseResume}>{isPaused ? 'Resume' : 'Pause'}</OnclickBtn>
+      {!isTimerStarted ? (
+        <button onClick={handleConfirmChanges} className='rounded-full bg-black text-white w-full p-2 hover:bg-slate-500'>Confirm Changes</button>
+      ) : (
+        <OnclickBtn onClick={handlePauseResume}>{isPaused ? 'Resume' : 'Pause'}</OnclickBtn>)
       }
       <OnclickBtn onClick={() => window.location.reload()}>Restart</OnclickBtn>
       <div className='text-center font-bold text-2xl'>

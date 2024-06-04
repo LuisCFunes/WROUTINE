@@ -54,8 +54,6 @@ const RadioButtonTimer: React.FC = () => {
             }
         }
 
-
-
         if (newFormData.totalTime && newFormData.exerciseTime && newFormData.restTime) {
             setFormData(newFormData);
             setTimerStarted(true);

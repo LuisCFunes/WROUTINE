@@ -10,6 +10,7 @@ const useExerciseRestState = (
     
     const alarmSound = new Howl({
         src: ['/timerSoundd.mp3'],
+        volume: 10.0,
       });
 
     useEffect(() => {

@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { Howl } from 'howler';
 import useTimer from '../../hooks/userTimer';
 import useExerciseRestState from '../../hooks/useExerciseRestState';
 import formatTime from '../util/formatTime';
@@ -16,6 +17,16 @@ const ExerciseTimer: React.FC<ExerciseTimerProps> = ({ initialTotalTime, initial
   const [isTimerStarted, setIsTimerStarted] = useState(timerStarted);
   const [timeLeft, setTimeLeft] = useTimer(totalTime, isPaused, isTimerStarted);
   const isResting = useExerciseRestState(timeLeft, initialExerciseTime, initialRestTime);
+
+  const alarmSound = new Howl({
+    src: ['/public/timerSound.mp3'],
+  });
+
+  useEffect(() => {
+    if (isResting || !isResting) {
+      alarmSound.play();
+    }
+  }, [isResting]);
 
   const handleConfirmChanges = () => {
     const totalSeconds = (Math.floor(totalTime / 60) * 60) + (totalTime % 60);

@@ -89,7 +89,7 @@ const RadioButtonTimer: React.FC = () => {
 
                         <div className="flex justify-center">
                             <Btn type="submit">
-                                Submit
+                                Start
                             </Btn>
                         </div>
 

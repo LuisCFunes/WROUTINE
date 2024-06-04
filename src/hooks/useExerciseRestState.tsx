@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Howl } from 'howler';
 
 const useExerciseRestState = (
     timeLeft: number,
@@ -6,6 +7,10 @@ const useExerciseRestState = (
     restTime: number
 ): boolean => {
     const [isResting, setIsResting] = useState<boolean>(false);
+    
+    const alarmSound = new Howl({
+        src: ['/timerSoundd.mp3'],
+      });
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -13,8 +18,10 @@ const useExerciseRestState = (
                 clearInterval(interval);
             } else if (!isResting && timeLeft % (exerciseTime + restTime) === 0) {
                 setIsResting(true);
+                alarmSound.play();
             } else if (isResting && timeLeft % (exerciseTime + restTime) === exerciseTime) {
                 setIsResting(false);
+                alarmSound.play();
             }
         }, 1000);
 

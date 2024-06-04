@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import { Howl } from 'howler';
+import React, { useState } from 'react';
 import useTimer from '../../hooks/userTimer';
 import useExerciseRestState from '../../hooks/useExerciseRestState';
 import formatTime from '../util/formatTime';
@@ -17,16 +16,6 @@ const ExerciseTimer: React.FC<ExerciseTimerProps> = ({ initialTotalTime, initial
   const [isTimerStarted, setIsTimerStarted] = useState(timerStarted);
   const [timeLeft, setTimeLeft] = useTimer(totalTime, isPaused, isTimerStarted);
   const isResting = useExerciseRestState(timeLeft, initialExerciseTime, initialRestTime);
-
-  const alarmSound = new Howl({
-    src: ['/public/timerSound.mp3'],
-  });
-
-  useEffect(() => {
-    if (isResting || !isResting) {
-      alarmSound.play();
-    }
-  }, [isResting]);
 
   const handleConfirmChanges = () => {
     const totalSeconds = (Math.floor(totalTime / 60) * 60) + (totalTime % 60);
@@ -46,8 +35,8 @@ const ExerciseTimer: React.FC<ExerciseTimerProps> = ({ initialTotalTime, initial
       ) : (
         <button onClick={handlePauseResume} className='rounded-full bg-black text-white w-full p-2 hover:bg-slate-500'>{isPaused ? 'Resume' : 'Pause'}</button>
       )}
-      <div className='text-center'>
-        <h1>{isResting ? 'Resting' : 'Exercising'}</h1>
+      <div className='text-center font-bold text-2xl'>
+        <h1 className='text-red-600	'>{isResting ? 'Rest Bro' : 'Do it!'}</h1>
         <p>Time Left: {formatTime(timeLeft)}</p>
       </div>
     </div>

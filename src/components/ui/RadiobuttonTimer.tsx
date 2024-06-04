@@ -22,7 +22,8 @@ const RadioButtonTimer: React.FC = () => {
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const formEntries = new FormData(event.target as HTMLFormElement);
-        let newFormData: FormData = { totalTime: 0, exerciseTime: 0, restTime: 0 };
+        const newFormData: FormData = { totalTime: 0, exerciseTime: 0, restTime: 0 };
+        
         const timeMapping: Record<string, TimeData> = {
             '10min': {
                 totalTime: 600, exerciseTime:
@@ -33,13 +34,14 @@ const RadioButtonTimer: React.FC = () => {
         };
 
         for (const [key, value] of formEntries.entries()) {
+            const timeData = timeMapping[value as keyof typeof timeMapping];
             switch (key) {
                 case 'total':
                     newFormData.totalTime = timeMapping[value as keyof typeof timeMapping]?.totalTime || 0;
 
                     break;
                 case 'exercise':
-                    const timeData = timeMapping[value as keyof typeof timeMapping];
+                    
                     if (timeData) {
                         newFormData.exerciseTime = timeData.exerciseTime;
                         newFormData.restTime = timeData.restTime;

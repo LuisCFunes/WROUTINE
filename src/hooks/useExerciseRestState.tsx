@@ -16,6 +16,7 @@ const useExerciseRestState = (
     useEffect(() => {
         const interval = setInterval(() => {
             if (timeLeft === 0) {
+                alarmSound.play();
                 clearInterval(interval);
             } else if (!isResting && timeLeft % (exerciseTime + restTime) === 0) {
                 setIsResting(true);

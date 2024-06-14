@@ -34,7 +34,7 @@ const ExerciseTimer: React.FC<ExerciseTimerProps> = ({
 
   return (
     <div className='flex flex-col gap-2 w-[300px] m-auto'>
-      {!timerStarted &&
+      {timerStarted &&
         <OnclickBtn onClick={handlePauseResume}>{isPaused ? 'Resume' : 'Pause'}</OnclickBtn>
       }
       <OnclickBtn onClick={handleRestart}>Restart</OnclickBtn>

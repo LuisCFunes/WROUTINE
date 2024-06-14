@@ -7,20 +7,21 @@ const useExerciseRestState = (
     restTime: number
 ): boolean => {
     const [isResting, setIsResting] = useState<boolean>(false);
-    
+
     const alarmSound = new Howl({
         src: ['/timerSoundd.mp3'],
-        volume: 10.0,
-      });
+        volume: 1.0,
+    });
 
     useEffect(() => {
         const interval = setInterval(() => {
             if (timeLeft === 0) {
                 clearInterval(interval);
-            } else if (!isResting && timeLeft % (exerciseTime + restTime) === 0) {
+                alarmSound.play();
+            } else if (!isResting && (timeLeft % (exerciseTime + restTime)) === restTime) {
                 setIsResting(true);
                 alarmSound.play();
-            } else if (isResting && timeLeft % (exerciseTime + restTime) === exerciseTime) {
+            } else if (isResting && (timeLeft % (exerciseTime + restTime)) === 0) {
                 setIsResting(false);
                 alarmSound.play();
             }

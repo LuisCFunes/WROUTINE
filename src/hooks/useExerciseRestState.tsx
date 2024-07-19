@@ -18,7 +18,6 @@ const useExerciseRestState = (
             if (timeLeft === 0) {
                 alarmSound.play();
                 clearInterval(interval);
-                alarmSound.play();
             } else if (!isResting && (timeLeft % (exerciseTime + restTime)) === restTime) {
                 setIsResting(true);
                 alarmSound.play();
